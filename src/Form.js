@@ -3,6 +3,13 @@ import './Form.css'
 import LanguageSelector from './LanguageSelector'
 import extractDataFromUserSentence from './extractDataFromUserSentence'
 
+const i18n = {
+    placeholder: {
+        en: 'to call Mum this evening',
+        fr: 'appeler Maman ce soir',
+    },
+}
+
 export default function Form({
     language = 'en',
     onLanguageChange = () => {},
@@ -29,7 +36,13 @@ export default function Form({
                 language={language}
                 onLanguageChange={onLanguageChange}
             />
-            <input className="input" type="text" ref={input} />
+            <input
+                className="input"
+                type="text"
+                ref={input}
+                placeholder={i18n.placeholder[language]}
+                autoFocus
+            />
         </form>
     )
 }

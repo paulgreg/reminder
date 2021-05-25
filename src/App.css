@@ -1,2 +1,6 @@
-.App {
+.mainTitle {
+    margin: 0 0.25em;
+    text-align: right;
+    color: lightgrey;
+    border-bottom: 1px solid grey;
 }
