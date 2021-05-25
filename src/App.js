@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import Form from './Form'
+import ReminderList from './ReminderList'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [language, setLanguage] = useState(
+        localStorage.reminderLanguage || 'en'
+    )
+    const [reminders, setReminders] = useState(
+        localStorage.reminderList ? JSON.parse(localStorage.reminderList) : []
+    )
+
+    const onLanguageChange = (lang) => {
+        localStorage.reminderLanguage = lang
+        setLanguage(lang)
+    }
+
+    const onNewReminder = ({ date, msg }) => {
+        const newReminderList = [
+            ...reminders,
+            {
+                created: Date.now(),
+                timestamp: date.getTime(),
+                msg,
+            },
+        ]
+        localStorage.reminderList = JSON.stringify(newReminderList)
+        setReminders(newReminderList)
+    }
+
+    return (
+        <div className="App">
+            <h1>Remind me</h1>
+            <Form
+                language={language}
+                onLanguageChange={onLanguageChange}
+                onNewReminder={onNewReminder}
+            />
+            <ReminderList language={language} reminders={reminders} />
+        </div>
+    )
 }
 
-export default App;
+export default App
