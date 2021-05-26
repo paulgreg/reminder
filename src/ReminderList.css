@@ -11,6 +11,13 @@
     font-size: 1.5em;
 }
 
+.button {
+    margin: 0 1em;
+}
+.button img {
+    max-width: 20px;
+}
+
 @media (max-width: 500px) {
     .ReminderList {
         font-size: 1em;

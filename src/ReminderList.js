@@ -2,44 +2,57 @@ import React, { useState } from 'react'
 import naturalDate from './naturalDate'
 import periodicTask, { MINUTE } from './periodicTask'
 import './ReminderList.css'
-
-function ReminderSubList({ className = '', language, label, list }) {
-    if (!list || list.length === 0) return null
-
-    return (
-        <div className={`ReminderSubList ${className}`}>
-            {label} :
-            <ul>
-                {list.map(({ created, timestamp, msg }) => (
-                    <li key={created}>
-                        {naturalDate(language, new Date(timestamp))} : {msg}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
-}
+import trash from './bin.svg'
 
 const i18n = {
     en: {
         past: 'Past',
         present: 'Now',
         future: 'Soon',
+        delete: 'delete',
     },
     fr: {
         past: 'Passé',
         present: 'Maintenant',
         future: 'Prochainnement',
+        delete: 'supprimer',
     },
 }
 
-export default function ReminderList({ language, reminders = [] }) {
+export default function ReminderList({
+    language,
+    reminders = [],
+    onDeleteReminder = () => {},
+}) {
     const [now, setNow] = useState(Date.now())
     const GAP = 5 * MINUTE
 
     periodicTask(MINUTE)(() => {
         if (!document.hidden) setNow(Date.now())
     })
+
+    function ReminderSubList({ className = '', language, label, list }) {
+        if (!list || list.length === 0) return null
+
+        return (
+            <div className={`ReminderSubList ${className}`}>
+                {label} :
+                <ul>
+                    {list.map(({ created, timestamp, msg }) => (
+                        <li key={created}>
+                            {naturalDate(language, new Date(timestamp))} : {msg}
+                            <button
+                                onClick={() => onDeleteReminder(created)}
+                                className="button"
+                            >
+                                <img src={trash} alt={i18n[language].delete} />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
 
     return (
         <div className="ReminderList">

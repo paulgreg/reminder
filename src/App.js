@@ -31,6 +31,13 @@ function App() {
         localStorage.reminderList = JSON.stringify(newReminderList)
         setReminders(newReminderList)
     }
+    const onDeleteReminder = (created) => {
+        const newReminderList = reminders.filter(
+            (reminder) => reminder.created !== created
+        )
+        localStorage.reminderList = JSON.stringify(newReminderList)
+        setReminders(newReminderList)
+    }
 
     const now = Date.now()
     const sortByTimestamp = (r1, r2) => r1.timestamp - r2.timestamp
@@ -46,7 +53,11 @@ function App() {
                 onLanguageChange={onLanguageChange}
                 onNewReminder={onNewReminder}
             />
-            <ReminderList language={language} reminders={sortedReminders} />
+            <ReminderList
+                language={language}
+                reminders={sortedReminders}
+                onDeleteReminder={onDeleteReminder}
+            />
         </div>
     )
 }
