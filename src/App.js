@@ -31,7 +31,7 @@ function App() {
 
     return (
         <div className="App">
-            <h1 className="mainTitle">Reminder</h1>
+            <h1 className="MainTitle">Reminder</h1>
             <Form
                 language={language}
                 onLanguageChange={onLanguageChange}

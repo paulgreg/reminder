@@ -13,10 +13,3 @@ select {
     background-color: #282c34;
     color: white;
 }
-
-input,
-select {
-    font-size: 2em;
-    border: 1px solid white;
-    margin: 0.25em;
-}
