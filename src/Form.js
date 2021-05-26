@@ -25,7 +25,7 @@ export default function Form({
             userSentence
         )
         dateAndMessages.forEach((dateAndMessage) =>
-            onNewReminder(dateAndMessage)
+            onNewReminder({ ...dateAndMessage, userSentence })
         )
         input.current.value = ''
     }
