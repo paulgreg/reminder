@@ -24,10 +24,12 @@ export default function Form({
             language,
             userSentence
         )
-        dateAndMessages.forEach((dateAndMessage) =>
-            onNewReminder({ ...dateAndMessage, userSentence })
-        )
-        input.current.value = ''
+        if (dateAndMessages.length > 0) {
+            dateAndMessages.forEach((dateAndMessage) =>
+                onNewReminder({ ...dateAndMessage, userSentence })
+            )
+            input.current.value = ''
+        }
     }
 
     return (
