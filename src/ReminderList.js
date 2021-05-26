@@ -14,7 +14,7 @@ const i18n = {
     fr: {
         past: 'Passé',
         present: 'Maintenant',
-        future: 'Prochainnement',
+        future: 'Prochainement',
         delete: 'supprimer',
     },
 }

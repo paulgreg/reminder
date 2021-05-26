@@ -3,7 +3,7 @@ import './LanguageSelector.css'
 
 const i18n = [
     { lang: 'en', value: 'Remind me to' },
-    { lang: 'fr', value: 'Rappelles moi de' },
+    { lang: 'fr', value: 'Rappelle moi de' },
 ]
 
 export default function LanguageSelector({
