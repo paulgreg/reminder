@@ -10,6 +10,12 @@ To deploy to github on branch gh_pages
 
 `npm i && PUBLIC_URL="https://paulgreg.me/reminder" ./to_ghpages`
 
+## Attributions
+
+That project use [chrono](https://github.com/wanasit/chrono) for date parsing.
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+Icons are from [Piotr Adam Kwiatkowski](http://ikons.piotrkwiatkowski.co.uk/)
+
 ## License
 
 MIT
