@@ -1,13 +1,24 @@
 import periodicTask, { MINUTE } from './periodicTask'
 
 export default function WebNotification({ reminders }) {
-    Notification.requestPermission(function (status) {
-        console.log(status)
-    })
+    console.log('WebNotification permissions', Notification.permission)
 
-    const now = Date.now()
+    if (Notification.permission === 'default') {
+        setTimeout(() => {
+            Notification.requestPermission(function (status) {
+                if (Notification.permission !== status) {
+                    Notification.permission = status
+                }
+            })
+        }, 1000)
+    }
 
-    periodicTask(MINUTE)(() =>
+    periodicTask(MINUTE)(() => {
+        if (Notification.permission !== 'granted') return
+
+        console.log('Checking for notifications to send')
+
+        const now = Date.now()
         reminders
             .filter(
                 ({ timestamp }) =>
@@ -17,6 +28,6 @@ export default function WebNotification({ reminders }) {
                 ({ msg, userSentence }) =>
                     new Notification(msg, { body: userSentence })
             )
-    )
+    })
     return null
 }
