@@ -27,6 +27,8 @@ const i18n = {
     },
 }
 
+const SECOND = 1000
+
 export default function naturalDate(
     language = 'en',
     date,
@@ -37,8 +39,8 @@ export default function naturalDate(
     var future = diff < 0
     diff = Math.abs(diff)
 
-    if (!future && diff < 10000) return i18n[language].now
-    if (future && diff < 5000) return i18n[language].almostNow
+    if (!future && diff < 30 * SECOND) return i18n[language].now
+    if (future && diff < 30 * SECOND) return i18n[language].almostNow
 
     var sentence = future ? i18n[language].future : i18n[language].past
 

@@ -19,6 +19,13 @@ describe('naturalDate', () => {
             },
         },
         {
+            date: new Date('January 1, 2020 00:00:29 GMT+00:00'),
+            expected: {
+                en: 'any second',
+                fr: 'imminent',
+            },
+        },
+        {
             date: new Date('January 1, 2020 00:00:30 GMT+00:00'),
             expected: {
                 en: '30 seconds from now',
