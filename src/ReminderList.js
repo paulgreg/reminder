@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import naturalDate from './naturalDate'
 import periodicTask, { MINUTE } from './periodicTask'
 import './ReminderList.css'
@@ -27,9 +27,16 @@ export default function ReminderList({
     const [now, setNow] = useState(Date.now())
     const GAP = 5 * MINUTE
 
-    periodicTask(MINUTE)(() => {
+    const updateNow = () => {
         if (!document.hidden) setNow(Date.now())
-    })
+    }
+
+    periodicTask(MINUTE)(updateNow)
+
+    useEffect(() => {
+        document.addEventListener('visibilitychange', updateNow, false)
+        return () => document.removeEventListener('visibilitychange', updateNow)
+    }, [])
 
     function ReminderSubList({ className = '', language, label, list }) {
         if (!list || list.length === 0) return null
