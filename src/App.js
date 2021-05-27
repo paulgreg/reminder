@@ -4,6 +4,7 @@ import './App.css'
 import Form from './Form'
 import ReminderList from './ReminderList'
 import logo512 from './logo512.png'
+import WebNotification from './WebNotification'
 
 function App() {
     const [language, setLanguage] = useState(
@@ -28,8 +29,10 @@ function App() {
                 userSentence,
             },
         ]
-        localStorage.reminderList = JSON.stringify(newReminderList)
-        setReminders(newReminderList)
+        const sortByTimestamp = (r1, r2) => r1.timestamp - r2.timestamp
+        const sortedReminders = newReminderList.sort(sortByTimestamp)
+        localStorage.reminderList = JSON.stringify(sortedReminders)
+        setReminders(sortedReminders)
     }
     const onDeleteReminder = (created) => {
         const newReminderList = reminders.filter(
@@ -39,14 +42,14 @@ function App() {
         setReminders(newReminderList)
     }
 
-    const now = Date.now()
-    const sortByTimestamp = (r1, r2) => r1.timestamp - r2.timestamp
-    const sortedReminders = reminders.sort(sortByTimestamp)
-    const count = reminders.filter(({ timestamp }) => timestamp <= now).length
+    const count = reminders.filter(
+        ({ timestamp }) => timestamp <= Date.now()
+    ).length
 
     return (
         <div className="App">
             <Favicon url={logo512} alertCount={count} />
+            <WebNotification reminders={reminders} />
             <h1 className="MainTitle">Reminder</h1>
             <Form
                 language={language}
@@ -55,7 +58,7 @@ function App() {
             />
             <ReminderList
                 language={language}
-                reminders={sortedReminders}
+                reminders={reminders}
                 onDeleteReminder={onDeleteReminder}
             />
         </div>
