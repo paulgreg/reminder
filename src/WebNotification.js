@@ -1,6 +1,9 @@
 import periodicTask, { MINUTE } from './periodicTask'
 
-export default function WebNotification({ reminders }) {
+export default function WebNotification({
+    reminders,
+    onReminderUpdate = () => {},
+}) {
     console.log('WebNotification permissions', Notification.permission)
 
     if (Notification.permission === 'default') {
@@ -21,13 +24,15 @@ export default function WebNotification({ reminders }) {
         const now = Date.now()
         reminders
             .filter(
-                ({ timestamp }) =>
-                    timestamp > now - MINUTE && timestamp < now + MINUTE
+                ({ notification, timestamp }) =>
+                    !notification && timestamp <= now
             )
-            .forEach(
-                ({ msg, userSentence }) =>
-                    new Notification(msg, { body: userSentence })
-            )
+            .forEach((item) => {
+                const { msg, userSentence } = item
+                const r = new Notification(msg, { body: userSentence })
+                console.log('sending notif', r)
+                onReminderUpdate({ ...item, notification: true })
+            })
     })
     return null
 }

@@ -34,9 +34,20 @@ function App() {
         localStorage.reminderList = JSON.stringify(sortedReminders)
         setReminders(sortedReminders)
     }
+
     const onDeleteReminder = (created) => {
         const newReminderList = reminders.filter(
             (reminder) => reminder.created !== created
+        )
+        localStorage.reminderList = JSON.stringify(newReminderList)
+        setReminders(newReminderList)
+    }
+
+    const onReminderUpdate = (updatedReminder) => {
+        const newReminderList = reminders.map((reminder) =>
+            reminder.created === updatedReminder.created
+                ? updatedReminder
+                : reminder
         )
         localStorage.reminderList = JSON.stringify(newReminderList)
         setReminders(newReminderList)
@@ -49,7 +60,10 @@ function App() {
     return (
         <div className="App">
             <Favicon url={logo512} alertCount={count} />
-            <WebNotification reminders={reminders} />
+            <WebNotification
+                reminders={reminders}
+                onReminderUpdate={onReminderUpdate}
+            />
             <h1 className="MainTitle">Reminder</h1>
             <Form
                 language={language}
