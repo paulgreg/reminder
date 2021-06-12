@@ -75,6 +75,9 @@ function App() {
                 reminders={reminders}
                 onDeleteReminder={onDeleteReminder}
             />
+            <footer>
+                <a href="https://github.com/paulgreg/reminder">infos</a>
+            </footer>
         </div>
     )
 }

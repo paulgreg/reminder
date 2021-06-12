@@ -12,6 +12,13 @@
     border-bottom: 1px solid grey;
 }
 
+Footer {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: white;
+}
+
 @media (max-width: 500px) {
     .MainTitle {
         font-size: 1.5em;
