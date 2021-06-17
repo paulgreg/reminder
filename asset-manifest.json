@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "https://paulgreg.me/reminder/static/css/main.7cce10ed.chunk.css",
+    "main.js": "https://paulgreg.me/reminder/static/js/main.329f2555.chunk.js",
+    "main.js.map": "https://paulgreg.me/reminder/static/js/main.329f2555.chunk.js.map",
+    "runtime-main.js": "https://paulgreg.me/reminder/static/js/runtime-main.5df77fb8.js",
+    "runtime-main.js.map": "https://paulgreg.me/reminder/static/js/runtime-main.5df77fb8.js.map",
+    "static/js/2.0bae7f2c.chunk.js": "https://paulgreg.me/reminder/static/js/2.0bae7f2c.chunk.js",
+    "static/js/2.0bae7f2c.chunk.js.map": "https://paulgreg.me/reminder/static/js/2.0bae7f2c.chunk.js.map",
+    "index.html": "https://paulgreg.me/reminder/index.html",
+    "static/css/main.7cce10ed.chunk.css.map": "https://paulgreg.me/reminder/static/css/main.7cce10ed.chunk.css.map",
+    "static/js/2.0bae7f2c.chunk.js.LICENSE.txt": "https://paulgreg.me/reminder/static/js/2.0bae7f2c.chunk.js.LICENSE.txt",
+    "static/media/bin.baf95d0b.svg": "https://paulgreg.me/reminder/static/media/bin.baf95d0b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5df77fb8.js",
+    "static/js/2.0bae7f2c.chunk.js",
+    "static/css/main.7cce10ed.chunk.css",
+    "static/js/main.329f2555.chunk.js"
+  ]
+}
